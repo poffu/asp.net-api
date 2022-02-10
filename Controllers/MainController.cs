@@ -106,7 +106,7 @@ namespace WebAppAPI.Controller
         {
             try
             {
-                bool isExistEmail = _userLogic.IsExistEmail(userRequest.Email);
+                bool isExistEmail = _userLogic.IsExistEmail(userRequest.Email, userRequest.UserId);
                 if (isExistEmail)
                 {
                     return Problem(statusCode: 400, detail: "Email is exist.");
