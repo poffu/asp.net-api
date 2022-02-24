@@ -4,7 +4,6 @@ namespace WebAppAPI.Dto
 {
     public record UserDto
     {
-        // [JsonIgnore]
         public int UserId { get; init; }
         public string Name { get; init; }
         public string Email { get; init; }
