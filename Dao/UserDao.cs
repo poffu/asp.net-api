@@ -2,21 +2,24 @@ using System.Collections.Generic;
 using System.Linq;
 using WebAppAPI.Dao.Model;
 using WebAppAPI.Dto;
+using Microsoft.Extensions.Configuration;
 
 namespace WebAppAPI.Dao
 {
     public class UserDao : IUserDao
     {
         private readonly UserContext _userContext;
+        private IConfiguration _config;
 
-        public UserDao(UserContext userContext)
+        public UserDao(UserContext userContext, IConfiguration config)
         {
             this._userContext = userContext;
+            this._config = config;
         }
 
-        public bool IsLogin(string email, string password)
+        public string Login(string email, string password)
         {
-            bool check = false;
+            string token = string.Empty;
             try
             {
                 var user = _userContext.WebUserModels.Where(m => (m.email == email) && (m.rule == 0)).FirstOrDefault();
@@ -24,7 +27,7 @@ namespace WebAppAPI.Dao
                 {
                     if (Common.Common.SignIn(password, user.password))
                     {
-                        check = true;
+                        token = Common.Common.GenerateJSONWebToken(_config);
                     }
                 }
             }
@@ -32,7 +35,7 @@ namespace WebAppAPI.Dao
             {
                 throw;
             }
-            return check;
+            return token;
         }
 
         public List<UserDto> GetAllUser(string name)

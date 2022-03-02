@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using WebAppAPI.Dao;
 using WebAppAPI.Dto;
-using WebAppAPI.Logic;
 
 namespace WebAppAPI.Controller
 {
@@ -11,9 +10,9 @@ namespace WebAppAPI.Controller
     [Route("")]
     public class MainController : ControllerBase
     {
-        private readonly IUserLogic _userLogic;
+        private readonly IUserDao _userDao;
 
-        public MainController(UserContext userContext, IConfiguration config) => _userLogic = new UserLogic(userContext, config);
+        public MainController(UserContext userContext, IConfiguration config) => _userDao = new UserDao(userContext, config);
 
         [AllowAnonymous]
         [HttpGet]
@@ -29,7 +28,7 @@ namespace WebAppAPI.Controller
         {
             try
             {
-                var token = _userLogic.Login(email, password);
+                var token = _userDao.Login(email, password);
                 if (string.IsNullOrEmpty(token))
                 {
                     return Problem(statusCode: 404, detail: "Email or Password is not correct.");
@@ -49,7 +48,7 @@ namespace WebAppAPI.Controller
         {
             try
             {
-                var user = _userLogic.GetAllUser(name);
+                var user = _userDao.GetAllUser(name);
                 return Ok(user);
             }
             catch
@@ -65,12 +64,12 @@ namespace WebAppAPI.Controller
         {
             try
             {
-                bool isExistEmail = _userLogic.IsExistEmail(userRequest.Email);
+                bool isExistEmail = _userDao.IsExistEmail(userRequest.Email);
                 if (isExistEmail)
                 {
                     return Problem(statusCode: 400, detail: "Email is exist.");
                 }
-                bool isCreate = _userLogic.CreateUser(userRequest);
+                bool isCreate = _userDao.CreateUser(userRequest);
                 return Ok(isCreate);
             }
             catch
@@ -86,7 +85,7 @@ namespace WebAppAPI.Controller
         {
             try
             {
-                var user = _userLogic.GetUser(userId);
+                var user = _userDao.GetUser(userId);
                 if (user.UserId == 0)
                 {
                     return Problem(statusCode: 404, detail: "Data doesn't exist.");
@@ -106,12 +105,12 @@ namespace WebAppAPI.Controller
         {
             try
             {
-                bool isExistEmail = _userLogic.IsExistEmail(userRequest.Email, userRequest.UserId);
+                bool isExistEmail = _userDao.IsExistEmail(userRequest.Email, userRequest.UserId);
                 if (isExistEmail)
                 {
                     return Problem(statusCode: 400, detail: "Email is exist.");
                 }
-                bool isUpdate = _userLogic.UpdateUser(userRequest);
+                bool isUpdate = _userDao.UpdateUser(userRequest);
                 return Ok(isUpdate);
             }
             catch
@@ -127,7 +126,7 @@ namespace WebAppAPI.Controller
         {
             try
             {
-                bool isDelete = _userLogic.DeleteUser(userId);
+                bool isDelete = _userDao.DeleteUser(userId);
                 return Ok(isDelete);
             }
             catch
