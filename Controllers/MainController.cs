@@ -46,6 +46,10 @@ namespace WebAppAPI.Controller
         [HttpGet]
         public IActionResult ListUser(string name = "")
         {
+            if (name == null)
+            {
+                name = string.Empty;
+            }
             try
             {
                 var user = _userDao.GetAllUser(name);

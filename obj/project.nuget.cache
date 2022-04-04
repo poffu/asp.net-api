@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vWNBzvWkxxuqHNcpG+GUS6gt683HwKe5LDKuKDetjCFVSTUhan9SM8pIuqsyqB0Gdh6wgyPaqSDg2n3UQy67sA==",
+  "dgSpecHash": "/nBN2zqpWeLs8pgWSDaaR8mzckvwoYCD+FLmAaAzp9qIE3CV++rGW1nmTiW6mf1h6z/xl5Mef/shuR3NhI5r9g==",
   "success": true,
   "projectFilePath": "D:\\asp .net\\WebAppAPI\\WebAppAPI.csproj",
   "expectedPackageFiles": [
@@ -64,7 +64,8 @@
     "C:\\Users\\Poffu\\.nuget\\packages\\system.security.cryptography.xml\\4.5.0\\system.security.cryptography.xml.4.5.0.nupkg.sha512",
     "C:\\Users\\Poffu\\.nuget\\packages\\system.security.permissions\\4.5.0\\system.security.permissions.4.5.0.nupkg.sha512",
     "C:\\Users\\Poffu\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512",
-    "C:\\Users\\Poffu\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512"
+    "C:\\Users\\Poffu\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
+    "C:\\Users\\Poffu\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
   ],
   "logs": []
 }
